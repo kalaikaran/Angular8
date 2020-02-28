@@ -23,27 +23,28 @@
 
   <div>
     <label>Enter Length</label>
-    <input id="strLength" type="text" />
+    <input (input)="onLengthChange($event.target.value)" id="strLength" type="text" />
 
     <div>
       <label>Use Letter</label>
-      <input type="checkbox" id="isletter"/>
+      <input (change)="onChangeUseLetters()" type="checkbox" id="isletter"/>
     </div>
     <div>
       <label>Use Number</label>
-      <input type="checkbox" id="isnumber"/>
+      <input (change)="onChangeUseNumbers()" type="checkbox" id="isnumber"/>
     </div>
     <div>
       <label>Use Symbols</label>
-      <input type="checkbox" id="isSymbol"/>
+      <input (change)="onChangeUseSymbols()" type="checkbox" id="isSymbol"/>
     </div>
     <div>
-      <button>Generate !</button>
+      <button [disabled]="!(passwordLength && (includeLetters || includeNumbers || includeSymbols))" 
+        (click)="onButtonClick()">Generate !</button>
     </div>
   </div>
   <div>
     <label>Your Password</label>
-    <input id="GPassword" type="text"/>
+    <input id="GPassword" type="text" [value]="password"/>
   </div>
 
 </div>
